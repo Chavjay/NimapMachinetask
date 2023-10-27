@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="NimapModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Nimap.dbo.Category8' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Category8">
+    <Key>
+      <PropertyRef Name="CategoryId" />
+    </Key>
+    <Property Name="CategoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CategoryName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Product7">
+    <Key>
+      <PropertyRef Name="ProductId" />
+    </Key>
+    <Property Name="ProductId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductName" Type="nvarchar" MaxLength="50" />
+    <Property Name="CategoryId" Type="int" />
+    <Property Name="CategoryName" Type="int" />
+  </EntityType>
+  <Association Name="FK__Product7__Catego__3E52440B">
+    <End Role="Category8" Type="Self.Category8" Multiplicity="0..1" />
+    <End Role="Product7" Type="Self.Product7" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category8">
+        <PropertyRef Name="CategoryId" />
+      </Principal>
+      <Dependent Role="Product7">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Product7__Catego__3F466844">
+    <End Role="Category8" Type="Self.Category8" Multiplicity="0..1" />
+    <End Role="Product7" Type="Self.Product7" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category8">
+        <PropertyRef Name="CategoryId" />
+      </Principal>
+      <Dependent Role="Product7">
+        <PropertyRef Name="CategoryName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="NimapModelStoreContainer">
+    <EntitySet Name="Product7" EntityType="Self.Product7" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Category8" EntityType="Self.Category8" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Category8].[CategoryId] AS [CategoryId], 
+    [Category8].[CategoryName] AS [CategoryName]
+    FROM [dbo].[Category8] AS [Category8]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK__Product7__Catego__3E52440B" Association="Self.FK__Product7__Catego__3E52440B">
+      <End Role="Category8" EntitySet="Category8" />
+      <End Role="Product7" EntitySet="Product7" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Product7__Catego__3F466844" Association="Self.FK__Product7__Catego__3F466844">
+      <End Role="Category8" EntitySet="Category8" />
+      <End Role="Product7" EntitySet="Product7" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

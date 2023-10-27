@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="NimapModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Category1">
+    <Key>
+      <PropertyRef Name="CategoryId" />
+    </Key>
+    <Property Name="CategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Product2" Relationship="Self.FK__Product2__Catego__32E0915F" FromRole="Category1" ToRole="Product2" />
+  </EntityType>
+  <EntityType Name="Product2">
+    <Key>
+      <PropertyRef Name="ProductId" />
+    </Key>
+    <Property Name="ProductId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CategoryName" Type="Int32" />
+    <NavigationProperty Name="Category1" Relationship="Self.FK__Product2__Catego__32E0915F" FromRole="Product2" ToRole="Category1" />
+  </EntityType>
+  <Association Name="FK__Product2__Catego__32E0915F">
+    <End Role="Category1" Type="Self.Category1" Multiplicity="0..1" />
+    <End Role="Product2" Type="Self.Product2" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category1">
+        <PropertyRef Name="CategoryId" />
+      </Principal>
+      <Dependent Role="Product2">
+        <PropertyRef Name="CategoryName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="NimapEntities3" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Category1" EntityType="Self.Category1" />
+    <EntitySet Name="Product2" EntityType="Self.Product2" />
+    <AssociationSet Name="FK__Product2__Catego__32E0915F" Association="Self.FK__Product2__Catego__32E0915F">
+      <End Role="Category1" EntitySet="Category1" />
+      <End Role="Product2" EntitySet="Product2" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="NimapModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Category9">
+    <Key>
+      <PropertyRef Name="CategoryId" />
+    </Key>
+    <Property Name="CategoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CategoryName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Product8">
+    <Key>
+      <PropertyRef Name="ProductId" />
+    </Key>
+    <Property Name="ProductId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductName" Type="nvarchar" MaxLength="50" />
+    <Property Name="CategoryId" Type="int" />
+    <Property Name="CategoryName" Type="int" />
+  </EntityType>
+  <Association Name="FK__Product8__Catego__440B1D61">
+    <End Role="Category9" Type="Self.Category9" Multiplicity="0..1" />
+    <End Role="Product8" Type="Self.Product8" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category9">
+        <PropertyRef Name="CategoryId" />
+      </Principal>
+      <Dependent Role="Product8">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Product8__Catego__44FF419A">
+    <End Role="Category9" Type="Self.Category9" Multiplicity="0..1" />
+    <End Role="Product8" Type="Self.Product8" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category9">
+        <PropertyRef Name="CategoryId" />
+      </Principal>
+      <Dependent Role="Product8">
+        <PropertyRef Name="CategoryName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="NimapModelStoreContainer">
+    <EntitySet Name="Category9" EntityType="Self.Category9" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Product8" EntityType="Self.Product8" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Product8__Catego__440B1D61" Association="Self.FK__Product8__Catego__440B1D61">
+      <End Role="Category9" EntitySet="Category9" />
+      <End Role="Product8" EntitySet="Product8" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Product8__Catego__44FF419A" Association="Self.FK__Product8__Catego__44FF419A">
+      <End Role="Category9" EntitySet="Category9" />
+      <End Role="Product8" EntitySet="Product8" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

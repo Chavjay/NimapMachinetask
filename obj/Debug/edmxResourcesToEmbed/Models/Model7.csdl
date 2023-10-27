@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="NimapModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Product7">
+    <Key>
+      <PropertyRef Name="ProductId" />
+    </Key>
+    <Property Name="ProductId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CategoryId" Type="Int32" />
+    <Property Name="CategoryName" Type="Int32" />
+    <NavigationProperty Name="Category8" Relationship="Self.FK__Product7__Catego__3E52440B" FromRole="Product7" ToRole="Category8" />
+    <NavigationProperty Name="Category81" Relationship="Self.FK__Product7__Catego__3F466844" FromRole="Product7" ToRole="Category8" />
+  </EntityType>
+  <EntityType Name="Category8">
+    <Key>
+      <PropertyRef Name="CategoryId" />
+    </Key>
+    <Property Name="CategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Product7" Relationship="Self.FK__Product7__Catego__3E52440B" FromRole="Category8" ToRole="Product7" />
+    <NavigationProperty Name="Product71" Relationship="Self.FK__Product7__Catego__3F466844" FromRole="Category8" ToRole="Product7" />
+  </EntityType>
+  <Association Name="FK__Product7__Catego__3E52440B">
+    <End Role="Category8" Type="Self.Category8" Multiplicity="0..1" />
+    <End Role="Product7" Type="Self.Product7" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category8">
+        <PropertyRef Name="CategoryId" />
+      </Principal>
+      <Dependent Role="Product7">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Product7__Catego__3F466844">
+    <End Role="Category8" Type="Self.Category8" Multiplicity="0..1" />
+    <End Role="Product7" Type="Self.Product7" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category8">
+        <PropertyRef Name="CategoryId" />
+      </Principal>
+      <Dependent Role="Product7">
+        <PropertyRef Name="CategoryName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="NimapEntities4" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Product7" EntityType="Self.Product7" />
+    <EntitySet Name="Category8" EntityType="Self.Category8" />
+    <AssociationSet Name="FK__Product7__Catego__3E52440B" Association="Self.FK__Product7__Catego__3E52440B">
+      <End Role="Category8" EntitySet="Category8" />
+      <End Role="Product7" EntitySet="Product7" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Product7__Catego__3F466844" Association="Self.FK__Product7__Catego__3F466844">
+      <End Role="Category8" EntitySet="Category8" />
+      <End Role="Product7" EntitySet="Product7" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

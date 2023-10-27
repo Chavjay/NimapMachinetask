@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="NimapModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Category1">
+    <Key>
+      <PropertyRef Name="CategoryId" />
+    </Key>
+    <Property Name="CategoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CategoryName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Product2">
+    <Key>
+      <PropertyRef Name="ProductId" />
+    </Key>
+    <Property Name="ProductId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductName" Type="nvarchar" MaxLength="50" />
+    <Property Name="CategoryName" Type="int" />
+  </EntityType>
+  <Association Name="FK__Product2__Catego__32E0915F">
+    <End Role="Category1" Type="Self.Category1" Multiplicity="0..1" />
+    <End Role="Product2" Type="Self.Product2" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category1">
+        <PropertyRef Name="CategoryId" />
+      </Principal>
+      <Dependent Role="Product2">
+        <PropertyRef Name="CategoryName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="NimapModel1StoreContainer">
+    <EntitySet Name="Category1" EntityType="Self.Category1" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Product2" EntityType="Self.Product2" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Product2__Catego__32E0915F" Association="Self.FK__Product2__Catego__32E0915F">
+      <End Role="Category1" EntitySet="Category1" />
+      <End Role="Product2" EntitySet="Product2" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
